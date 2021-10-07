@@ -13,14 +13,12 @@ func main() {
 	log.Fatal(http.ListenAndServe(":9000", nil))
 }
 
-func HelloHandler(res http.ResponseWriter, req *http.Request) {
+func HelloHandler(w http.ResponseWriter, r *http.Request) {
 
-	header := res.Header()
-
-	header.Set("Content-Type", "application/json")
-
-	res.WriteHeader(http.StatusOK)
-
-	fmt.Fprint(res, `{"status": "Good"}`)
-
+	for k, v := range r.Header {
+		for _, v2 := range v {
+			w.Header().Set(k, v2)
+			fmt.Printf("%s : %s \n", k, v2)
+		}
+	}
 }
