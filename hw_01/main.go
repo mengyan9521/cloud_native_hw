@@ -1,3 +1,6 @@
+/*完成作业的内容
+1. 接收客户端 request，并将 request 中带的 header 写入 response header*/
+
 package main
 
 import (
