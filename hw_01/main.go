@@ -16,11 +16,11 @@ func main() {
 	log.Fatal(http.ListenAndServe(":9000", nil))
 }
 
-func HelloHandler(w http.ResponseWriter, r *http.Request) {
+func HelloHandler(req http.ResponseWriter, res *http.Request) {
 
-	for k, v := range r.Header {
+	for k, v := range res.Header {
 		for _, v2 := range v {
-			w.Header().Set(k, v2)
+			req.Header().Set(k, v2)
 			fmt.Printf("%s : %s \n", k, v2)
 		}
 	}
